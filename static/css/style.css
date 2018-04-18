@@ -1,0 +1,21 @@
+ul{
+
+    -webkit-padding-start: 0px;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+}
+
+.container img {
+    margin-left: 10px;
+    width: 20pt;
+ }
+
+

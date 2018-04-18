@@ -1,0 +1,45 @@
+{% extends "bootstrap/base.html" %}
+
+
+{% block head %}
+{{super()}}
+    <link rel= "stylesheet" type= "text/css" href= "/static/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container" ng-app="todoApp" ng-controller="todoCtrl">
+
+        <!--INPUT NEW TASK-->
+        <label for="todo">Add a new todo item:</label>
+        <input type="text" name="todoitem" class="form-control" ng-model="newTask" ng-keyup="$event.keyCode == 13 && addTask()">
+        <input type="submit" style="margin-top: 10pt" class="btn btn-primary btn-lg" value="Add task" ng-click="addTask()">
+        <!--END INPUT NEW TASK-->
+
+        <div class="page-header">
+              <h1>Tasks: </h1>
+        </div>
+
+        <ul>
+            <li class="list-group-item" ng-repeat="x in data | orderBy:'complete'" style="overflow: hidden; display: flex;">
+                <div ng-if="x.complete">
+                    <s><span ng-bind="x.description"></span></s>
+                    <a ng-click="modify(x.id_todo)" href=""><img src="static/img/x.svg"></a>
+                </div>
+                <div ng-if="!x.complete">
+                    <span ng-bind="x.description"></span>
+                    <a ng-click="modify(x.id_todo)" href=""> <img src="static/img/check.svg"></a>
+                </div>
+                <a ng-click="delete(x.id_todo)" href=""><img src="static/img/trash.svg"></a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript" src="static/js/script.js"></script>
+{% endblock %}
